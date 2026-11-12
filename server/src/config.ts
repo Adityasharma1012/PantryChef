@@ -1,7 +1,20 @@
+import fs from "node:fs";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
 import dotenv from "dotenv";
 
-// Load environment variables from .env if present
-dotenv.config();
+// Load environment variables from server/.env (or cwd) and monorepo root .env if present
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const cwdEnvPath = path.resolve(process.cwd(), ".env");
+const rootEnvPath = path.resolve(__dirname, "../../.env");
+
+if (fs.existsSync(cwdEnvPath)) {
+  dotenv.config({ path: cwdEnvPath });
+}
+if (rootEnvPath !== cwdEnvPath && fs.existsSync(rootEnvPath)) {
+  dotenv.config({ path: rootEnvPath });
+}
 
 export interface ServerConfig {
   port: number;

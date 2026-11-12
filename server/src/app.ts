@@ -45,7 +45,12 @@ export function createApp() {
     cors({
       origin: (origin, callback) => {
         // Allow requests with no origin (like mobile apps, curl, or same-origin in production)
-        if (!origin || allowedOrigins.includes(origin)) {
+        // Also allow onrender.com subdomains automatically when hosted on Render
+        if (
+          !origin ||
+          allowedOrigins.includes(origin) ||
+          (process.env.RENDER && origin.endsWith(".onrender.com"))
+        ) {
           callback(null, true);
         } else {
           callback(null, false);
