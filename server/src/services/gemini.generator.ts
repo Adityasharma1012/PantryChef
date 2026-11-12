@@ -307,6 +307,12 @@ export class GeminiRecipeGenerator implements RecipeGenerator {
           throw new RateLimitedError();
         }
 
+        if (errStatus === 400 && /API_KEY_INVALID|API key not valid/i.test(errMessage)) {
+          throw new GeminiKeyMissingError(
+            "The configured Gemini API key is invalid. Please obtain a valid key from Google AI Studio (https://aistudio.google.com/app/apikey). Google Gemini keys typically start with 'AIzaSy'."
+          );
+        }
+
         if (
           errStatus === 503 ||
           errStatus === 500 ||
