@@ -13,6 +13,8 @@ dist/
 client/dist/
 server/dist/
 shared/dist/
+client/dev-dist/
+dev-dist/
 
 # Logs
 npm-debug.log*

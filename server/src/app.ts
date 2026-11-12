@@ -16,6 +16,9 @@ const __dirname = path.dirname(__filename);
 export function createApp() {
   const app = express();
 
+  // Trust reverse proxy (Render, Cloudflare, load balancers)
+  app.set("trust proxy", 1);
+
   // Security headers with Helmet
   app.use(
     helmet({

@@ -6,6 +6,9 @@ export const recipesRateLimiter = rateLimit({
   max: 30, // Limit each IP to 30 requests per window
   standardHeaders: true,
   legacyHeaders: false,
+  validate: {
+    xForwardedForHeader: false,
+  },
   handler: (_req, res) => {
     res.status(ERROR_STATUS_MAP.RATE_LIMITED).json({
       error: {

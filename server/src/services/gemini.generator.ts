@@ -18,7 +18,7 @@ import {
 import { sanitizeIngredients, sanitizeText } from "../utils/sanitize.js";
 import type { RecipeGenerator } from "./generator.interface.js";
 
-const DEFAULT_TIMEOUT_MS = 25000;
+const DEFAULT_TIMEOUT_MS = 45000;
 
 // Gemini structured output schema definition using the SDK types
 const INGREDIENT_OBJECT_SCHEMA = {
