@@ -26,7 +26,7 @@ export interface ServerConfig {
 
 export const config: ServerConfig = {
   port: parseInt(process.env.PORT || "3001", 10),
-  geminiModel: process.env.GEMINI_MODEL || "gemini-3.5-flash",
+  geminiModel: process.env.GEMINI_MODEL || "gemini-3.5-flash-lite",
   useMockGemini: process.env.USE_MOCK_GEMINI === "true",
   clientOrigin: process.env.CLIENT_ORIGIN || "http://localhost:5173",
   nodeEnv: process.env.NODE_ENV || "development",
